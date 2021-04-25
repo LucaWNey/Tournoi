@@ -1,0 +1,7 @@
+name: Tournoi
+version: 1.0.0
+author: Neyuux_
+main: fr.neyuux.tournoi.Index
+commands:
+  tournoi:
+    description: Commande principale
