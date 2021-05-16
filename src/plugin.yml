@@ -1,7 +1,7 @@
 name: Tournoi
-version: 1.0.0
+version: 1.0.1
 author: Neyuux_
-main: fr.neyuux.tournoi.Index
+main: fr.neyuux.tournament.Tournament
 commands:
   tournoi:
     description: Commande principale
