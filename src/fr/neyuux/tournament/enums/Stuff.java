@@ -79,17 +79,6 @@ public enum Stuff {
 		return inventory;
 	}
 	
-	public void GiveStuff(Player player) {
-		PlayerInventory inv = player.getInventory();
-		
-		inv.setHelmet(getHelmet());
-		inv.setChestplate(getChestplate());
-		inv.setLeggings(getLeggings());
-		inv.setBoots(getBoots());
-		for (ItemStack i : getInventory())
-			inv.addItem(i);
-	}
-	
 	
 	private static ItemStack getEnchantedItem(Material material, SimpleEntry<Enchantment, Integer> enchant1, SimpleEntry<Enchantment, Integer> enchant2, SimpleEntry<Enchantment, Integer> enchant3) {
 		ItemStack it = new ItemStack(material);
@@ -108,16 +97,6 @@ public enum Stuff {
 		itm.setDisplayName("§6Golden Head");
 		it.setItemMeta(itm);
 		return it;
-	}
-	
-	
-	public static void clearStuff(Player player) {
-		PlayerInventory inv = player.getInventory();
-		inv.clear();
-		inv.setHelmet(null);
-		inv.setChestplate(null);
-		inv.setLeggings(null);
-		inv.setBoots(null);
 	}
 	
 	

@@ -131,7 +131,7 @@ public class FightManager {
 				p.removePotionEffect(pe.getType());
 			p.setGameMode(GameMode.SURVIVAL);
 			p.getInventory().clear();
-			stuff.GiveStuff(p);
+			main.getStuffManager().giveStuff(p, stuff);
 			p.updateInventory();
 			
 			ScoreboardSign ss = main.boards.get(p.getUniqueId());
@@ -157,13 +157,19 @@ public class FightManager {
 			public void run() {
 				if (s == 0) {
 					Bukkit.broadcastMessage(main.getPrefix() + "§a§lDébut du combat !");
+
 					for (Player p : Bukkit.getOnlinePlayers())
 						p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 8, 1);
-					for (Player p : players)
+
+					for (Player p : players) {
 						p.updateInventory();
+						main.getStuffManager().saveStuff(p, stuff);
+					}
+
 					setFightState(FightState.FIGHTING);
 					main.pingUpdater(main.boards.get(p1.getUniqueId()), p2);
 					main.pingUpdater(main.boards.get(p2.getUniqueId()), p1);
+
 					cancel();
 					return;
 				}
@@ -212,7 +218,7 @@ public class FightManager {
 		ev.setDamage(0);
 		
 		for (Player p : players) {
-			Stuff.clearStuff(p);
+			main.getStuffManager().clearStuff(player);
 			p.setFireTicks(0);
 		}
 		for (Player p : Bukkit.getOnlinePlayers())
