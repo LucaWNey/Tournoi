@@ -94,8 +94,8 @@ public class TournamentListener implements Listener {
 		DamageCause dc = ev.getCause();
 		double fdamage = ev.getFinalDamage();
 		
-		if (main.fightmanager.getFightState() != null) {
-			if (!main.fightmanager.isFightState(FightState.FIGHTING)) {
+		if (main.getFightManager().getFightState() != null) {
+			if (!main.getFightManager().isFightState(FightState.FIGHTING)) {
 				ev.setCancelled(true);
 				return;
 			}
@@ -109,36 +109,36 @@ public class TournamentListener implements Listener {
 		switch (dc) {
 			case DROWNING:
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §cs'est noyé miskine.", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §cs'est noyé miskine.", ev);
 				break;
 			case ENTITY_ATTACK:
 			case PROJECTILE:
 				break;
 			case FALL:
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §cs'est éclaté au sol.", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §cs'est éclaté au sol.", ev);
 				break;
 			case FIRE:
 			case FIRE_TICK:
 			case LAVA:
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §ca échoué au \"Le Sol c'est de la Lave\".", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §ca échoué au \"Le Sol c'est de la Lave\".", ev);
 				break;
 			case STARVATION:
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §aest devenu un africain.", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §aest devenu un africain.", ev);
 				break;
 			case SUFFOCATION:
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §cs'est fait obsitrap.", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §cs'est fait obsitrap.", ev);
 				break;
 			case SUICIDE:
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §cs'est fait /kill (ez).", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §cs'est fait /kill (ez).", ev);
 				break;
 			case VOID:
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §ca tourné dans le vide.", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §ca tourné dans le vide.", ev);
 				break;
 			default:
 				ev.setCancelled(true);
@@ -165,8 +165,8 @@ public class TournamentListener implements Listener {
 		double fdamage = ev.getFinalDamage();
 		
 		if (!(d instanceof Player) && !(d instanceof Arrow)) return;
-		if (main.fightmanager.getFightState() != null) {
-			if (!main.fightmanager.isFightState(FightState.FIGHTING)) {
+		if (main.getFightManager().getFightState() != null) {
+			if (!main.getFightManager().isFightState(FightState.FIGHTING)) {
 				ev.setCancelled(true);
 				return;
 			}
@@ -191,7 +191,7 @@ public class TournamentListener implements Listener {
 			case ENTITY_ATTACK:
 				Player damager = (Player)d;
 				if (player.getHealth() <= fdamage)
-					main.fightmanager.eliminate(player, player.getDisplayName() + " §cwas rekt by " + damager.getDisplayName() + "§c.", ev);
+					main.getFightManager().eliminate(player, player.getDisplayName() + " §cwas rekt by " + damager.getDisplayName() + "§c.", ev);
 				break;
 			case PROJECTILE:
 				Arrow a = (Arrow)d;
@@ -202,7 +202,7 @@ public class TournamentListener implements Listener {
 					format.setMaximumFractionDigits(1);
 					damager1.sendMessage(main.getPrefix() + player.getDisplayName() + " §cest désormais à §4§l" + format.format(player.getHealth() - fdamage) + " \u2764");
 					if (player.getHealth() <= fdamage)
-						main.fightmanager.eliminate(player, player.getDisplayName() + " §ca été tué par la flèche de " + damager1.getDisplayName() + "§c.", ev);
+						main.getFightManager().eliminate(player, player.getDisplayName() + " §ca été tué par la flèche de " + damager1.getDisplayName() + "§c.", ev);
 				}
 				break;
 			default:
@@ -214,20 +214,20 @@ public class TournamentListener implements Listener {
 	
 	@EventHandler
 	public void onMoove(PlayerMoveEvent ev) {
-		if (main.fightmanager.getFightState() != null)
-			if (main.fightmanager.isFightState(FightState.STARTING))
-				if (main.fightmanager.p1.equals(ev.getPlayer()) || main.fightmanager.p2.equals(ev.getPlayer()))
+		if (main.getFightManager().getFightState() != null)
+			if (main.getFightManager().isFightState(FightState.STARTING))
+				if (main.getFightManager().p1.equals(ev.getPlayer()) || main.getFightManager().p2.equals(ev.getPlayer()))
 					if (ev.getFrom().distanceSquared(ev.getTo()) > 0.001D)
 						ev.setTo(ev.getFrom());
 	}
 	
 	@EventHandler
 	public void onArrowThrow(EntityShootBowEvent ev) {
-		if (main.fightmanager.getFightState() != null)
-			if (main.fightmanager.isFightState(FightState.STARTING))
+		if (main.getFightManager().getFightState() != null)
+			if (main.getFightManager().isFightState(FightState.STARTING))
 				if (ev.getEntity() instanceof Player) {
 					Player p = (Player)ev.getEntity();
-					if (main.fightmanager.p1.equals(p) || main.fightmanager.p2.equals(p)) {
+					if (main.getFightManager().p1.equals(p) || main.getFightManager().p2.equals(p)) {
 						ev.setCancelled(true);
 					}
 				}

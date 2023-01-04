@@ -230,7 +230,7 @@ public class CommandTournoi implements CommandExecutor {
 														return true;
 													}
 													
-													main.fightmanager.createMatch(p1, p2, bo, FightType.GROUPES, Integer.parseInt(args[2]));
+													main.getFightManager().createMatch(p1, p2, bo, FightType.GROUPES, Integer.parseInt(args[2]));
 												}
 											}
 										}
@@ -259,7 +259,7 @@ public class CommandTournoi implements CommandExecutor {
 												return true;
 											}
 											
-											main.fightmanager.createMatch(p1, p2, bo, FightType.ELIMINATIONS, 0);
+											main.getFightManager().createMatch(p1, p2, bo, FightType.ELIMINATIONS, 0);
 										}
 									}
 								}

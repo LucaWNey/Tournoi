@@ -37,10 +37,19 @@ public class Tournament extends JavaPlugin {
 	private YamlConfiguration yconfig = YamlConfiguration.loadConfiguration(file);
 	
 	private State state;
-	public FightManager fightmanager;
+	private FightManager fightmanager;
+	private StuffManager stuffManager;
 	
 	public String getPrefix() {
 		return prefix;
+	}
+
+	public FightManager getFightManager() {
+		return this.fightmanager;
+	}
+
+	public StuffManager getStuffManager() {
+		return this.stuffManager;
 	}
 	
 
