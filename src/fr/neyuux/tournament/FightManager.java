@@ -72,7 +72,7 @@ public class FightManager {
 			p.setGameMode(GameMode.SPECTATOR);
 			if (Bukkit.getScoreboardManager().getMainScoreboard().getEntryTeam(p.getName()) != null)
 				Bukkit.getScoreboardManager().getMainScoreboard().getEntryTeam(p.getName()).unregister();
-			p.setDisplayName("§8[§7Spectateur§8] §7" + p.getName() + "§r");
+			p.setDisplayName("§8[§7Spec§8] §7" + p.getName() + "§r");
 			p.setPlayerListName(p.getDisplayName());
 			
 			ScoreboardSign ss = new ScoreboardSign(p, main.getPrefix());
@@ -144,8 +144,8 @@ public class FightManager {
 			ss.setLine(8, " §6Ping : §f? ms");
 		}
 		for (Entry<UUID, ScoreboardSign> en : main.boards.entrySet()) {
-			en.getValue().setLine(2, p1.getDisplayName() + "§8(§7"+rounds.get(p1)+" points§8)");
-			en.getValue().setLine(4, p2.getDisplayName() + "§8(§7"+rounds.get(p2)+" points§8)");
+			en.getValue().setLine(2, p1.getDisplayName()/* + "§7("+rounds.get(p1)+" pts)"*/);
+			en.getValue().setLine(4, p2.getDisplayName()/* + "§7("+rounds.get(p2)+" pts)"*/);
 		}
 		p1.teleport(new Location(Bukkit.getWorld("Tournoi"), -639.5, 64.0001, 381.5, 180f, 0f));
 		p2.teleport(new Location(Bukkit.getWorld("Tournoi"), -638.5, 64.0001, 291.5, 0f, 0f));

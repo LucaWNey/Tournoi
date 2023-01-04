@@ -43,7 +43,8 @@ public class Tournament extends JavaPlugin {
 		return prefix;
 	}
 	
-	
+
+
 	@Override
 	public void onEnable() {
 		if (!System.getProperties().containsKey("RELOAD")) {

@@ -1,5 +1,5 @@
 name: Tournoi
-version: 1.0.1
+version: 1.0.2
 author: Neyuux_
 main: fr.neyuux.tournament.Tournament
 commands:
