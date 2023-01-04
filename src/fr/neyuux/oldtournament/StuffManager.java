@@ -1,6 +1,6 @@
-package fr.neyuux.tournament;
+package fr.neyuux.oldtournament;
 
-import fr.neyuux.tournament.enums.Stuff;
+import fr.neyuux.oldtournament.enums.Stuff;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

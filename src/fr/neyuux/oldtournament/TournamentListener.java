@@ -1,7 +1,7 @@
-package fr.neyuux.tournament;
+package fr.neyuux.oldtournament;
 
-import fr.neyuux.tournament.enums.FightState;
-import fr.neyuux.tournament.enums.Stuff;
+import fr.neyuux.oldtournament.enums.FightState;
+import fr.neyuux.oldtournament.enums.Stuff;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

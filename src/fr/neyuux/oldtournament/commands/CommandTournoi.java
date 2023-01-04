@@ -1,9 +1,9 @@
-package fr.neyuux.tournament.commands;
+package fr.neyuux.oldtournament.commands;
 
-import fr.neyuux.tournament.Tournament;
-import fr.neyuux.tournament.enums.FightType;
-import fr.neyuux.tournament.enums.Country;
-import fr.neyuux.tournament.enums.State;
+import fr.neyuux.oldtournament.Tournament;
+import fr.neyuux.oldtournament.enums.FightType;
+import fr.neyuux.oldtournament.enums.Country;
+import fr.neyuux.oldtournament.enums.State;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

@@ -1,4 +1,4 @@
-package fr.neyuux.tournament.enums;
+package fr.neyuux.oldtournament.enums;
 
 public enum FightState {
 	

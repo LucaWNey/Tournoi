@@ -1,10 +1,8 @@
-package fr.neyuux.tournament.enums;
+package fr.neyuux.oldtournament.enums;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.AbstractMap.SimpleEntry;

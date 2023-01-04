@@ -1,6 +1,6 @@
-package fr.neyuux.tournament;
+package fr.neyuux.oldtournament;
 
-import fr.neyuux.tournament.enums.*;
+import fr.neyuux.oldtournament.enums.*;
 import org.bukkit.*;
 import org.bukkit.FireworkEffect.Builder;
 import org.bukkit.FireworkEffect.Type;

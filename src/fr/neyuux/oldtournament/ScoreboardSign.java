@@ -1,4 +1,4 @@
-package fr.neyuux.tournament;
+package fr.neyuux.oldtournament;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

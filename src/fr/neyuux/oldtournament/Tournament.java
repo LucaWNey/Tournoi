@@ -1,9 +1,9 @@
-package fr.neyuux.tournament;
+package fr.neyuux.oldtournament;
 
-import fr.neyuux.tournament.commands.CommandTournoi;
-import fr.neyuux.tournament.enums.FightState;
-import fr.neyuux.tournament.enums.Country;
-import fr.neyuux.tournament.enums.State;
+import fr.neyuux.oldtournament.commands.CommandTournoi;
+import fr.neyuux.oldtournament.enums.FightState;
+import fr.neyuux.oldtournament.enums.Country;
+import fr.neyuux.oldtournament.enums.State;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;

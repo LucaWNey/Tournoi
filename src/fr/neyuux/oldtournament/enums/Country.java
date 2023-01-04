@@ -1,4 +1,4 @@
-package fr.neyuux.tournament.enums;
+package fr.neyuux.oldtournament.enums;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
