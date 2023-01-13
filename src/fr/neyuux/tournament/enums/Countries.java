@@ -1,10 +1,13 @@
-package fr.neyuux.tournament;
+package fr.neyuux.tournament.enums;
 
+import fr.neyuux.tournament.Tournament;
+import fr.neyuux.tournament.TournamentPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 public enum Countries {
@@ -93,11 +96,27 @@ public enum Countries {
         item.setDurability((short) 3);
 
         SkullMeta itemMeta = (SkullMeta) item.getItemMeta();
+
         itemMeta.setDisplayName(this.getDisplayName());
+        itemMeta.setLore(Arrays.asList("", "§7>>Clique pour choisir"));
+
         item.setItemMeta(itemMeta);
         UUID hashAsId = new UUID(this.minecraftHeadsValue.hashCode(), this.minecraftHeadsValue.hashCode());
+
         return Bukkit.getUnsafe().modifyItemStack(item,
                 "{SkullOwner:{Id:\"" + hashAsId + "\",Properties:{textures:[{Value:\"" + this.minecraftHeadsValue + "\"}]}}}"
         );
+    }
+
+    public boolean isAvailable() {
+        Tournament tournament = TournamentPlugin.getInstance().getSelectedTournament();
+        if (tournament == null) return true;
+
+        return tournament.getYamlConfiguration().getIntegerList("usedcountries").contains(this.ordinal());
+    }
+
+
+    public static Countries getFromDisplayName(String displayName) {
+        return Arrays.stream(Countries.values()).filter(country -> country.getDisplayName().equals(displayName)).findFirst().orElse(null);
     }
 }

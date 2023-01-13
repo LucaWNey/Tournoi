@@ -4,16 +4,20 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class CustomItemStack extends ItemStack {
+
+    private static final List<CustomItemStack> itemList = new ArrayList<>();
 
     public CustomItemStack(Material m){
         super(m);
@@ -143,4 +147,32 @@ public class CustomItemStack extends ItemStack {
     }
 
 
+    @SuppressWarnings("deprecation")
+    public boolean isCustomSimilar(ItemStack stack) {
+        if (stack == null) return false;
+        else if (stack == this) return true;
+        else {
+            return this.getTypeId() == stack.getTypeId() && this.getDurability() == stack.getDurability() && this.hasItemMeta() == stack.hasItemMeta() && (!this.hasItemMeta() || !this.getItemMeta().hasLore() || !this.getItemMeta().hasDisplayName() || (this.getItemMeta().getDisplayName().equals(stack.getItemMeta().getDisplayName()) && this.getItemMeta().getLore().equals(stack.getItemMeta().getLore())));
+        }
+    }
+
+    public static List<CustomItemStack> getItemList() {
+        return itemList;
+    }
+
+    protected static void addItemInList(CustomItemStack customItemStack) {
+        for (CustomItemStack item : getItemList()) if (item.isCustomSimilar(customItemStack)) return;
+        getItemList().add(customItemStack);
+    }
+
+    public static int getSlot(Inventory inv, CustomItemStack customItemStack) {
+        int slot = -1;
+        for (int i = 0; i < inv.getSize(); i++) {
+            ItemStack item = inv.getItem(i);
+            if (item == null) continue;
+            if (customItemStack.isCustomSimilar(item))
+                slot = i;
+        }
+        return slot;
+    }
 }

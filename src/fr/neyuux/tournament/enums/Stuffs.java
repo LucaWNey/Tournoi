@@ -1,14 +1,9 @@
-package fr.neyuux.tournament;
+package fr.neyuux.tournament.enums;
 
 import fr.neyuux.tournament.utils.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.AbstractMap.SimpleEntry;
-import java.util.Arrays;
-import java.util.List;
 
 public enum Stuffs {
 
@@ -30,20 +25,25 @@ public enum Stuffs {
             new ItemStack(Material.WOOD, 64),
             new ItemStack(Material.DIAMOND_PICKAXE),
             new ItemStack(Material.DIAMOND_AXE),
-            new ItemStack(Material.ARROW, 24)
+            new ItemStack(Material.ARROW, 28)
             ),
 
     NO_ROD("§e§lNo Rod",
             new CustomItemStack(Material.IRON_HELMET).addEnchantmentV(Enchantment.PROTECTION_ENVIRONMENTAL, 2),
             new CustomItemStack(Material.DIAMOND_CHESTPLATE).addEnchantmentV(Enchantment.PROTECTION_ENVIRONMENTAL, 2),
-            getEnchantedItem(Material.IRON_LEGGINGS, new SimpleEntry<>(Enchantment.PROTECTION_ENVIRONMENTAL, 2), null, null),
-            getEnchantedItem(Material.DIAMOND_BOOTS, new SimpleEntry<>(Enchantment.PROTECTION_ENVIRONMENTAL, 2), null, null),
-            getEnchantedItem(Material.DIAMOND_SWORD, new SimpleEntry<>(Enchantment.DAMAGE_ALL, 3), null, null),
-                    new ItemStack(Material.GOLDEN_APPLE, 10),
-                    getEnchantedItem(Material.BOW, new SimpleEntry<>(Enchantment.ARROW_DAMAGE, 2), null, null),
-                    new ItemStack(Material.WATER_BUCKET), new ItemStack(Material.WATER_BUCKET), new ItemStack(Material.LAVA_BUCKET, 1),
-                    new ItemStack(Material.COBBLESTONE, 64), new ItemStack(Material.WOOD, 64), new ItemStack(Material.DIAMOND_PICKAXE),
-                    new ItemStack(Material.IRON_AXE), new ItemStack(Material.ARROW, 24)
+            new CustomItemStack(Material.IRON_LEGGINGS).addEnchantmentV(Enchantment.PROTECTION_ENVIRONMENTAL,  2),
+            new CustomItemStack(Material.DIAMOND_BOOTS).addEnchantmentV(Enchantment.PROTECTION_ENVIRONMENTAL, 2),
+            new CustomItemStack(Material.DIAMOND_SWORD).addEnchantmentV(Enchantment.PROTECTION_ENVIRONMENTAL, 2),
+            new ItemStack(Material.GOLDEN_APPLE, 10),
+            new CustomItemStack(Material.BOW).addEnchantmentV(Enchantment.ARROW_DAMAGE, 2),
+            new ItemStack(Material.WATER_BUCKET),
+            new ItemStack(Material.WATER_BUCKET),
+            new ItemStack(Material.LAVA_BUCKET, 1),
+            new ItemStack(Material.COBBLESTONE, 64),
+            new ItemStack(Material.WOOD, 64),
+            new ItemStack(Material.DIAMOND_PICKAXE),
+            new ItemStack(Material.IRON_AXE),
+            new ItemStack(Material.ARROW, 24)
             );
 
 
@@ -61,7 +61,7 @@ public enum Stuffs {
     ItemStack chestplate;
     ItemStack leggings;
     ItemStack boots;
-    List<ItemStack> inventory;
+    ItemStack[] inventory;
 
     public String getName() {
         return displayName;
@@ -83,7 +83,7 @@ public enum Stuffs {
         return boots;
     }
 
-    public List<ItemStack> getInventory() {
+    public ItemStack[] getInventory() {
         return inventory;
     }
 

@@ -55,13 +55,14 @@ public class Tournament extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		if (!System.getProperties().containsKey("RELOAD")) {
-			Properties prop = new Properties(System.getProperties());
-			prop.put("RELOAD", "FALSE");
-		} else
+		if (System.getProperties().containsKey("RELOAD")) {
 			if (System.getProperty("RELOAD").equals("TRUE"))
 				return;
-		
+		} else {
+			Properties prop = new Properties(System.getProperties());
+			prop.put("RELOAD", "FALSE");
+		}
+
 		Scoreboard s = Bukkit.getScoreboardManager().getMainScoreboard();
 		for (Country p : Country.values()) {
 			Team t = s.registerNewTeam(p.getName());
