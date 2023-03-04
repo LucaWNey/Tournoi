@@ -18,7 +18,7 @@ public class ReturnArrowItemStack extends CustomItemStack {
         this.previousInv = previousInv;
         this.inv = null;
 
-        this.setLore("§7Revenir au menu", "§7précédent. §0(" + previousInv.getID() + "§0)");
+        this.setLore("§fRevenir au menu", "§fprécédent. §0(" + previousInv.getID() + "§0)");
 
         addItemInList(this);
     }

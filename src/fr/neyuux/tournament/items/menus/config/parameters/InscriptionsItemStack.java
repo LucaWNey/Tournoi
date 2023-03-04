@@ -18,18 +18,21 @@ public class InscriptionsItemStack extends CustomItemStack {
 
         this.tournament = TournamentPlugin.getInstance().getSelectedTournament();
 
-        this.setLore("§fPermet d'ouvrir ou de fermer", "les inscriptions au Tournoi.", "", "§bValeur : §7§l" + getStringFromBoolean(tournament.isInscriptionsOpen()), "", "§b>>Clique pour modifier");
+        this.setLore("§fPermet d'ouvrir ou de fermer", "§fles inscriptions au Tournoi.", "", "§bValeur : §7§l" + getStringFromBoolean(tournament.isInscriptionsOpen()), "", "§b>>Clique pour modifier");
+
+        addItemInList(this);
     }
 
     @Override
     public void use(HumanEntity player, Event event) {
         InventoryClickEvent inventoryClickEvent = (InventoryClickEvent) event;
         Inventory inv = inventoryClickEvent.getInventory();
+        int slot = getSlot(inv, this);
 
         tournament.setInscriptionsOpen(!tournament.isInscriptionsOpen());
 
         this.setLoreLine(3, "§bValeur : " + getStringFromBoolean(tournament.isInscriptionsOpen()));
-        inv.setItem(getSlot(inv, this), this);
+        inv.setItem(slot, this);
     }
 
 

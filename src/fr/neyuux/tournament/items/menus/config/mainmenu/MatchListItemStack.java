@@ -17,6 +17,6 @@ public class MatchListItemStack extends CustomItemStack {
 
     @Override
     public void use(HumanEntity player, Event event) {
-        new MatchListInv().open(player);
+        //new MatchListInv().open(player);
     }
 }

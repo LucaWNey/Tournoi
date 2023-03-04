@@ -2,6 +2,7 @@ package fr.neyuux.tournament.items.menus.choosetournament;
 
 import fr.neyuux.tournament.Tournament;
 import fr.neyuux.tournament.TournamentPlugin;
+import fr.neyuux.tournament.utils.Anvil;
 import fr.neyuux.tournament.utils.CustomItemStack;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -10,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 
 public class TournamentChooseItemStack extends CustomItemStack {
 
@@ -20,7 +22,7 @@ public class TournamentChooseItemStack extends CustomItemStack {
 
         this.tournament = tournament;
 
-        this.setLore("§c§lPhase actuelle : §c" + tournament.getPhase().getName(),
+        this.setLore("§c§lPhase actuelle : §c" + tournament.getPhaseType().getName(),
                 "§7§lParticipants au départ : §7" + tournament.getParticipants(),
                 "§b§lCréateur : §b" + tournament.getCreator(),
                 "",
@@ -39,7 +41,10 @@ public class TournamentChooseItemStack extends CustomItemStack {
             tournament.delete();
 
         } else if (clickType.isShiftClick()) {
-            TournamentPlugin.openRenameTournamentInventory((Player) player);
+            ((Player) player).setLevel(4);
+            CreateTournamentItemStack.getRenamingPlayers().add(player);
+            Inventory anvilInv = Anvil.openAnvilInventory(((Player) player).getPlayer());
+            anvilInv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Tournoi " + (TournamentPlugin.getLoadedTournaments().size() + 1)).addLore("§0" + TournamentPlugin.getLoadedTournaments().indexOf(tournament)));
 
         } else {
             player.closeInventory();

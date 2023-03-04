@@ -2,6 +2,7 @@ package fr.neyuux.tournament.inventories.config;
 
 import fr.neyuux.tournament.TournamentPlugin;
 import fr.neyuux.tournament.items.menus.config.mainmenu.*;
+import fr.neyuux.tournament.items.menus.config.phases.PhasesManagerItemStack;
 import fr.neyuux.tournament.utils.AbstractCustomInventory;
 import org.bukkit.entity.HumanEntity;
 

@@ -5,6 +5,7 @@ import fr.neyuux.tournament.TournamentPlugin;
 import fr.neyuux.tournament.items.menus.choosetournament.CreateTournamentItemStack;
 import fr.neyuux.tournament.items.menus.choosetournament.TournamentChooseItemStack;
 import fr.neyuux.tournament.utils.AbstractCustomInventory;
+import org.bukkit.entity.HumanEntity;
 
 public class TournamentSelectionInv extends AbstractCustomInventory {
 
@@ -17,7 +18,7 @@ public class TournamentSelectionInv extends AbstractCustomInventory {
     public void registerItems() {
         this.setAllCorners((byte)5);
 
-        this.setItem(this.getSize() - 8, new CreateTournamentItemStack());
+        this.setItem(8, new CreateTournamentItemStack());
 
         for (Tournament tournament : TournamentPlugin.getLoadedTournaments())
             for (int slot = 10; slot < this.getSize() - 9; slot++)
@@ -26,5 +27,11 @@ public class TournamentSelectionInv extends AbstractCustomInventory {
                     this.setItem(slot, new TournamentChooseItemStack(tournament));
                     break;
                 }
+    }
+
+    @Override
+    public void open(HumanEntity player) {
+        TournamentPlugin.getInstance().loadTournaments();
+        super.open(player);
     }
 }

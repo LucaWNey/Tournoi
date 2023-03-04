@@ -10,10 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CustomItemStack extends ItemStack {
 
@@ -88,8 +85,12 @@ public class CustomItemStack extends ItemStack {
     public CustomItemStack addLore(String text) {
         ItemMeta meta = this.getItemMeta();
         List<String> lore = meta.getLore();
-        lore.add(text);
-        meta.setLore(lore);
+        if (lore == null) {
+            meta.setLore(Collections.singletonList(text));
+        } else {
+            lore.add(text);
+            meta.setLore(lore);
+        }
         this.setItemMeta(meta);
         return this;
     }

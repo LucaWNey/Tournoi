@@ -19,6 +19,6 @@ public class PlayersMenuItemStack extends CustomItemStack {
 
     @Override
     public void use(HumanEntity player, Event event) {
-        new ListPlayersInv().open(player);
+        //new ListPlayersInv().open(player);
     }
 }

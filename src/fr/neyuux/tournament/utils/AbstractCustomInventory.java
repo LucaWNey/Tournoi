@@ -35,6 +35,10 @@ public abstract class AbstractCustomInventory {
         return size;
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public void adaptIntToInvSize(int i) {
         int newsize = Math.max(i, 45);
 
