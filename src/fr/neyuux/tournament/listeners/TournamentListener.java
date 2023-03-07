@@ -46,45 +46,42 @@ public class TournamentListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onRenameInAnvil(InventoryClickEvent e){
-        if(!e.isCancelled()){
-            HumanEntity ent = e.getWhoClicked();
+        HumanEntity ent = e.getWhoClicked();
 
-            if(ent instanceof Player) {
-                Player player = (Player)ent;
-                Inventory inv = e.getInventory();
+        if(ent instanceof Player) {
+            Player player = (Player)ent;
+            Inventory inv = e.getInventory();
 
-                if(inv instanceof AnvilInventory) {
-                    InventoryView view = e.getView();
-                    int rawSlot = e.getRawSlot();
+            if(inv instanceof AnvilInventory) {
+                InventoryView view = e.getView();
+                int rawSlot = e.getRawSlot();
 
-                    if(rawSlot == view.convertSlot(rawSlot)) {
-                        if(rawSlot == 2) {
-                            ItemStack item = e.getCurrentItem();
+                if(rawSlot == view.convertSlot(rawSlot)) {
+                    if(rawSlot == 2) {
+                        ItemStack item = e.getCurrentItem();
 
-                            if(item != null){
-                                ItemMeta meta = item.getItemMeta();
+                        if(item != null){
+                            ItemMeta meta = item.getItemMeta();
 
-                                if(meta != null){
-                                    if(meta.hasDisplayName()){
-                                        String displayName = meta.getDisplayName();
+                            if(meta != null){
+                                if(meta.hasDisplayName()){
+                                    String displayName = meta.getDisplayName().replace('&', '§');
 
-                                        Bukkit.broadcastMessage(CreateTournamentItemStack.getRenamingPlayers().toString());
+                                    if (CreateTournamentItemStack.getRenamingPlayers().contains(player)) {
+                                        Tournament tournament = TournamentPlugin.getByID(meta.getLore().get(0).substring(meta.getLore().get(0).length() - 4));
 
-                                        if (CreateTournamentItemStack.getRenamingPlayers().contains(player)) {
-                                            Tournament tournament = TournamentPlugin.getLoadedTournaments().get(Integer.parseInt(meta.getLore().get(0).replace("§0", "")));
+                                        tournament.setDisplayName(displayName);
+                                        Bukkit.broadcastMessage(TournamentPlugin.getPrefix() + "§b" + player.getName() + " §aa renommé le tournoi avec l'ID §2\"§7" + tournament.getID() + "§2\" §aen §r" + tournament.getDisplayName());
+                                    } else if (PhaseConfirmCreateItemStack.getRenamingPlayers().contains(player)) {
+                                        Phase phase = TournamentPlugin.getInstance().getSelectedTournament().getPhaseByID(meta.getLore().get(0).substring(meta.getLore().get(0).length() - 4));
 
-                                            tournament.setDisplayName(displayName);
-                                        } else if (PhaseConfirmCreateItemStack.getRenamingPlayers().contains(player)) {
-                                            Phase phase = TournamentPlugin.getInstance().getSelectedTournament().getPhases().get(Integer.parseInt(meta.getLore().get(0).replace("§0", "")));
-
-                                            phase.setName(displayName);
-                                        }
-                                        e.setCancelled(true);
-                                        player.closeInventory();
-
-                                        Bukkit.broadcastMessage("caca");
-                                        player.setLevel(0);
+                                        phase.setName(displayName);
                                     }
+                                    e.setCancelled(true);
+                                    inv.clear();
+                                    player.closeInventory();
+
+                                    player.setLevel(0);
                                 }
                             }
                         }
@@ -101,14 +98,15 @@ public class TournamentListener implements Listener {
 
         if (item == null) return;
 
+        if (!event.getClickedInventory().getType().equals(InventoryType.PLAYER))
+            event.setCancelled(true);
+
         try {
             for (CustomItemStack customitem : CustomItemStack.getItemList())
                 if (customitem.isCustomSimilar(item)) {
-                    event.setCancelled(true);
                     customitem.use(human, event);
                 }
-        } catch (ConcurrentModificationException e) {
-            Bukkit.getLogger().warning(e.getMessage());}
+        } catch (ConcurrentModificationException ignored) {}
     }
 
 

@@ -50,7 +50,7 @@ public class PhaseConfirmCreateItemStack extends CustomItemStack {
             Bukkit.getScheduler().runTaskLater(main, () -> {
                 ((Player) player).setLevel(4);
                 Inventory anvilInv = Anvil.openAnvilInventory(((Player) player).getPlayer());
-                anvilInv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Phase " + (TournamentPlugin.getInstance().getSelectedTournament().getPhases().size() + 1)).addLore("§0" + TournamentPlugin.getInstance().getSelectedTournament().getPhases().indexOf(phase)));
+                anvilInv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouvelle Phase").setLore("§0" + phase.getID()));
                 renamingPlayer.add(player);
             }, 22L);
 

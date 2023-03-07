@@ -47,8 +47,4 @@ public class TournamentParticipantsNumberItemStack extends CustomItemStack {
         this.setAmount(this.value);
         inv.setItem(slot, this);
     }
-
-    public int getValue() {
-        return value;
-    }
 }

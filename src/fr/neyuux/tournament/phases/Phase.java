@@ -7,9 +7,11 @@ import fr.neyuux.tournament.enums.PhaseType;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class Phase {
 
+    private final String ID;
     protected String name;
     protected final PhaseType type;
     protected int participants;
@@ -18,6 +20,7 @@ public abstract class Phase {
         this.name = name;
         this.type = type;
         this.participants = participants;
+        this.ID = UUID.randomUUID().toString().substring(0, 4);
 
         for (Phase phase : TournamentPlugin.getInstance().getSelectedTournament().getPhases())
             if (phase.getName().equals(name))
@@ -28,6 +31,7 @@ public abstract class Phase {
         tournament.setInConfig("phases." + this.name + ".name", name);
         tournament.setInConfig("phases." + this.name + ".type", type);
         tournament.setInConfig("phases." + this.name + ".participants", participants);
+        tournament.setInConfig("phases." + this.name + ".id", ID);
     }
 
     public abstract PhaseType getType();
@@ -49,5 +53,9 @@ public abstract class Phase {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getID() {
+        return ID;
     }
 }

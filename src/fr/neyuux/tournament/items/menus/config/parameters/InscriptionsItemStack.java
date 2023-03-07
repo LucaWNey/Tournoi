@@ -3,6 +3,7 @@ package fr.neyuux.tournament.items.menus.config.parameters;
 import fr.neyuux.tournament.Tournament;
 import fr.neyuux.tournament.TournamentPlugin;
 import fr.neyuux.tournament.utils.CustomItemStack;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Event;
@@ -33,6 +34,8 @@ public class InscriptionsItemStack extends CustomItemStack {
 
         this.setLoreLine(3, "§bValeur : " + getStringFromBoolean(tournament.isInscriptionsOpen()));
         inv.setItem(slot, this);
+
+        Bukkit.broadcastMessage(tournament.getPrefix() + "§6Les inscriptions sont désormais " + getStringFromBoolean(tournament.isInscriptionsOpen()) + " !");
     }
 
 

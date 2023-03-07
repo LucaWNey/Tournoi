@@ -11,7 +11,7 @@ public class TournamentSelectionInv extends AbstractCustomInventory {
 
     public TournamentSelectionInv() {
         super("§a§lChoix du Tournoi", 54);
-        this.adaptIntToInvSize(18 + TournamentPlugin.getLoadedTournaments().size());
+        this.adaptIntToInvSize(20 + TournamentPlugin.getLoadedTournaments().size());
     }
 
     @Override

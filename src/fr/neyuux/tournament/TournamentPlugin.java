@@ -55,20 +55,6 @@ public class TournamentPlugin extends JavaPlugin {
         loadedTournaments.add(t);
     }
 
-    public static void openRenameTournamentInventory(Player player, Tournament tournament) {
-        Inventory inv = Bukkit.createInventory(null, InventoryType.ANVIL, "§a§lNommez votre Tournoi");
-        inv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Tournoi " + (getLoadedTournaments().size() + 1)).addLore("§0" + getLoadedTournaments().indexOf(tournament)));
-        player.openInventory(inv);
-        player.setLevel(10);
-    }
-
-    public static void openRenamePhaseInventory(Player player, Phase phase) {
-        AnvilInventory inv = (AnvilInventory) Bukkit.createInventory(null, InventoryType.ANVIL, "§c§lNommez votre Phase");
-        inv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Phase " + (getInstance().getSelectedTournament().getPhases().size() + 1)).addLore("§0" + getInstance().getSelectedTournament().getPhases().indexOf(phase)));
-        player.openInventory(inv);
-        player.setLevel(10);
-    }
-
     public void sendActionBar(Player player, String msg) {
         IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + msg + "\"}");
         PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc, (byte) 2);
@@ -159,7 +145,7 @@ public class TournamentPlugin extends JavaPlugin {
 
         INSTANCE = this;
 
-        if (!this.getDataFolder().exists() || this.getDataFolder().listFiles((dir, name) -> name.equals("tournaments.yml")) == null || this.getDataFolder().listFiles((dir, name) -> name.equals("tournaments.yml")).length == 0) {
+        if (!this.getDataFolder().exists() || this.getDataFolder().listFiles((dir, name) -> name.equals("tournaments.yml")) == null) {
             this.baseFile = new File(this.getDataFolder(), "tournaments.yml");
             this.baseConfig = YamlConfiguration.loadConfiguration(this.baseFile);
             baseConfig.set("tournaments", new ArrayList<>());
@@ -191,6 +177,10 @@ public class TournamentPlugin extends JavaPlugin {
         if (tournament != null) {
             Bukkit.broadcastMessage(getPrefix() + tournament.getDisplayName() + " §aa été sélectionné.");
         }
+    }
+
+    public static Tournament getByID(String ID) {
+        return loadedTournaments.stream().filter(loadedTournament -> loadedTournament.getID().equals(ID)).findFirst().orElse(null);
     }
 
     public YamlConfiguration getBaseConfig() {

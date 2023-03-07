@@ -17,10 +17,12 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public class Tournament {
 
+    private final String ID;
     private String displayName;
     private File file;
     private YamlConfiguration yconfig;
@@ -38,8 +40,12 @@ public class Tournament {
         this.file = new File(TournamentPlugin.getInstance().getDataFolder(), ChatColor.stripColor(displayName) + ".yml");
         this.yconfig = YamlConfiguration.loadConfiguration(this.file);
 
+        this.ID = UUID.randomUUID().toString().substring(0, 4);
+
         this.setInConfig("tournament", displayName.replace('§', '&'));
         this.setInConfig("creator", creator);
+        this.setInConfig("id", ID);
+        this.addParticipants(0);
 
         TournamentPlugin main = TournamentPlugin.getInstance();
         YamlConfiguration baseConfig = main.getBaseConfig();
@@ -60,20 +66,12 @@ public class Tournament {
     public Tournament(File file, YamlConfiguration yamlConfiguration) {
         this.file = file;
         this.yconfig = yamlConfiguration;
-
-        System.out.println("1 " + yconfig);
-        System.out.println("2 " + file);
-        try {
-            System.out.println(Files.readAllLines(file.toPath(), StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        
         this.displayName = yconfig.getString("tournament").replace('&', '§');
         this.creator = yamlConfiguration.getString("creator");
         this.participants = yamlConfiguration.getInt("config.participants");
         this.inscriptionsOpen = yamlConfiguration.getBoolean("config.inscriptionsopen");
+        this.ID = yamlConfiguration.getString("id");
 
         /*ConfigurationSection phaseSection = yamlConfiguration.getConfigurationSection("phases");
 
@@ -83,15 +81,32 @@ public class Tournament {
     }
 
     public void delete() {
+        File mainfile = TournamentPlugin.getInstance().getBaseFile();
+        YamlConfiguration mainyconfig = TournamentPlugin.getInstance().getBaseConfig();
+
+        List<String> tournaments = mainyconfig.getStringList("tournaments");
+        tournaments.remove(this.file.getName());
+        mainyconfig.set("tournaments", tournaments);
+        try {
+            mainyconfig.save(mainfile);
+        } catch (IOException e) {
+            Bukkit.broadcastMessage(TournamentPlugin.getPrefix() + "§4[§cErreur§4] Impossible de supprimer le tournoi correctement.");
+            e.printStackTrace();
+        }
+
         if (this.getFile().delete()) {
+            if (TournamentPlugin.getInstance().getSelectedTournament().getID().equals(this.getID()))
+                TournamentPlugin.getInstance().setSelectedTournament(null);
+            TournamentPlugin.getLoadedTournaments().remove(this);
+            
             this.file = null;
             this.yconfig = null;
-            if (TournamentPlugin.getInstance().getSelectedTournament().equals(this))
-                TournamentPlugin.getInstance().setSelectedTournament(null);
+            
         } else {
             Bukkit.broadcastMessage(TournamentPlugin.getPrefix() + "§4[§cErreur§4] §cImpossible de supprimer le tournoi.");
             Bukkit.getLogger().log(Level.SEVERE, "Impossible de supprimer le Tournoi", new IOException());
         }
+        Bukkit.broadcastMessage(TournamentPlugin.getInstance().getSelectedTournament().getDisplayName());
     }
 
     public void setPlayerCountry(Player player, Countries country) {
@@ -113,10 +128,8 @@ public class Tournament {
 
     public void setInConfig(String path, Object value) {
         yconfig.set(path, value);
-        Bukkit.broadcastMessage("a");
         try {
             yconfig.save(this.getFile());
-            Bukkit.broadcastMessage("b");
         } catch (IOException e) {
             Bukkit.broadcastMessage(this.getPrefix() + "§4[§cErreur§4] §cImpossible de sauvegarder une modif de la config du Tournoi");
             e.printStackTrace();
@@ -176,5 +189,18 @@ public class Tournament {
 
     public HashMap<PhaseType, HashMap<Integer, List<Match>>> getMatches() {
         return matches;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+
+    public Phase getPhaseByID(String ID) {
+        for (Phase phase : this.phases) {
+            if (phase.getID().equals(ID))
+                return phase;
+        }
+        return null;
     }
 }

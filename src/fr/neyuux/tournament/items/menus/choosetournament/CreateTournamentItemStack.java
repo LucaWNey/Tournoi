@@ -39,7 +39,7 @@ public class CreateTournamentItemStack extends CustomItemStack {
         Bukkit.getScheduler().runTaskLater(main, () -> {
             ((Player) player).setLevel(4);
             Inventory anvilInv = Anvil.openAnvilInventory(((Player) player).getPlayer());
-            anvilInv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Tournoi " + (TournamentPlugin.getLoadedTournaments().size() + 1)).setLore("§0" + TournamentPlugin.getLoadedTournaments().indexOf(tournament)));
+            anvilInv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Tournoi").setLore("§0" + tournament.getID()));
             renamingPlayer.add(player);
             }, 22L);
     }

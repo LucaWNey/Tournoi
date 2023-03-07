@@ -35,16 +35,19 @@ public class TournamentChooseItemStack extends CustomItemStack {
 
     @Override
     public void use(HumanEntity player, Event event) {
-        ClickType clickType =((InventoryClickEvent)event).getClick();
+        InventoryClickEvent inventoryClickEvent = (InventoryClickEvent) event;
+        ClickType clickType = inventoryClickEvent.getClick();
 
-        if (clickType.equals(ClickType.DROP)) {
+        if (clickType.equals(ClickType.DROP) || clickType.equals(ClickType.CONTROL_DROP)) {
             tournament.delete();
+            Bukkit.broadcastMessage(TournamentPlugin.getPrefix() + "§b" + player.getName() + " §ca supprimé le Tournoi §2\"§a" + tournament.getDisplayName() + "§2\"§c.");
+            inventoryClickEvent.getClickedInventory().remove(inventoryClickEvent.getCurrentItem());
 
         } else if (clickType.isShiftClick()) {
             ((Player) player).setLevel(4);
             CreateTournamentItemStack.getRenamingPlayers().add(player);
             Inventory anvilInv = Anvil.openAnvilInventory(((Player) player).getPlayer());
-            anvilInv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Tournoi " + (TournamentPlugin.getLoadedTournaments().size() + 1)).addLore("§0" + TournamentPlugin.getLoadedTournaments().indexOf(tournament)));
+            anvilInv.setItem(0, new CustomItemStack(Material.PAPER, 1, "Nouveau Tournoi").setLore("§0" + tournament.getID()));
 
         } else {
             player.closeInventory();
