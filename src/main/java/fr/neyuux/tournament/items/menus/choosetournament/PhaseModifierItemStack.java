@@ -1,11 +1,9 @@
 package fr.neyuux.tournament.items.menus.choosetournament;
 
-import fr.neyuux.tournament.TournamentPlugin;
 import fr.neyuux.tournament.phases.Phase;
 import fr.neyuux.tournament.utils.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 public class PhaseModifierItemStack extends CustomItemStack {

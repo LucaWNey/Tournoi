@@ -1,5 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component jdk="1.8" jdk_type="JavaSDK">
-	<exclude-output/>
-	<contentEntry url="file://$MODULE_DIR$"/>
+<component LANGUAGE_LEVEL="JDK_1_8" jdk="1.8" jdk_type="JavaSDK">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/src/test/java"/>
+		<excludeFolder url="file://$MODULE_DIR$/target"/>
+		<excludeFolder url="file://$MODULE_DIR$/.idea/libraries"/>
+		<excludeFolder url="file://$MODULE_DIR$/bin/fr/neyuux/tournament/enums"/>
+		<excludeFolder url="file://$MODULE_DIR$/bin/fr/neyuux/tournament/inventories"/>
+		<excludeFolder url="file://$MODULE_DIR$/bin/fr/neyuux/tournament/items"/>
+		<excludeFolder url="file://$MODULE_DIR$/bin/fr/neyuux/tournament/listeners"/>
+		<excludeFolder url="file://$MODULE_DIR$/bin/fr/neyuux/tournament/phases"/>
+		<excludeFolder url="file://$MODULE_DIR$/bin/fr/neyuux/tournament/utils"/>
+		<excludeFolder url="file://$MODULE_DIR$/bin/fr/neyuux/oldtournament"/>
+	</contentEntry>
+	<lib name="Maven: org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT" scope="PROVIDED"/>
+	<lib name="Maven: fr.minuskube.inv:smart-invs:1.2.7" scope="PROVIDED"/>
+	<lib name="Maven: org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT" scope="PROVIDED"/>
+	<lib name="Maven: commons-lang:commons-lang:2.6" scope="PROVIDED"/>
+	<lib name="Maven: com.google.code.gson:gson:2.2.4" scope="PROVIDED"/>
+	<lib name="Maven: org.avaje:ebean:2.8.1" scope="PROVIDED"/>
+	<lib name="Maven: javax.persistence:persistence-api:1.0" scope="PROVIDED"/>
+	<lib name="Maven: org.yaml:snakeyaml:1.15" scope="PROVIDED"/>
+	<lib name="Maven: net.md-5:bungeecord-chat:1.8-SNAPSHOT" scope="PROVIDED"/>
+	<lib name="Maven: fr.minuskube:netherboard-core:1.2.3" scope="PROVIDED"/>
+	<lib name="Maven: fr.minuskube:netherboard-bukkit:1.2.3" scope="PROVIDED"/>
+	<lib name="Maven: net.kyori:adventure-text-serializer-gson-legacy-impl:4.13.0" scope="RUNTIME"/>
+	<lib name="Maven: net.kyori:adventure-platform-facet:4.3.0" scope="RUNTIME"/>
+	<lib name="Maven: net.kyori:adventure-platform-viaversion:4.3.0" scope="RUNTIME"/>
+	<lib name="Maven: org.projectlombok:lombok:1.18.26" scope="PROVIDED"/>
+	<lib name="Maven: org.apache.maven:maven-aether-provider:3.0" scope="RUNTIME"/>
+	<lib name="Maven: net.sf.proguard:proguard-base:6.2.2" scope="RUNTIME"/>
+	<levels>
+		<level name="Maven: org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT" value="project"/>
+		<level name="Maven: fr.minuskube.inv:smart-invs:1.2.7" value="project"/>
+		<level name="Maven: org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT" value="project"/>
+		<level name="Maven: commons-lang:commons-lang:2.6" value="project"/>
+		<level name="Maven: com.google.code.gson:gson:2.2.4" value="project"/>
+		<level name="Maven: org.avaje:ebean:2.8.1" value="project"/>
+		<level name="Maven: javax.persistence:persistence-api:1.0" value="project"/>
+		<level name="Maven: org.yaml:snakeyaml:1.15" value="project"/>
+		<level name="Maven: net.md-5:bungeecord-chat:1.8-SNAPSHOT" value="project"/>
+		<level name="Maven: fr.minuskube:netherboard-core:1.2.3" value="project"/>
+		<level name="Maven: fr.minuskube:netherboard-bukkit:1.2.3" value="project"/>
+		<level name="Maven: net.kyori:adventure-api:4.13.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-key:4.13.0" value="project"/>
+		<level name="Maven: net.kyori:examination-api:1.3.0" value="project"/>
+		<level name="Maven: net.kyori:examination-string:1.3.0" value="project"/>
+		<level name="Maven: org.jetbrains:annotations:24.0.1" value="project"/>
+		<level name="Maven: net.kyori:adventure-platform-bukkit:4.3.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-platform-api:4.3.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-text-serializer-bungeecord:4.3.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-text-serializer-legacy:4.13.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-nbt:4.13.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-text-serializer-gson:4.13.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-text-serializer-gson-legacy-impl:4.13.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-platform-facet:4.3.0" value="project"/>
+		<level name="Maven: net.kyori:adventure-platform-viaversion:4.3.0" value="project"/>
+		<level name="Maven: org.projectlombok:lombok:1.18.26" value="project"/>
+		<level name="Maven: io.github.pr0methean.betterrandom:BetterRandom:5.6.2" value="project"/>
+		<level name="Maven: com.googlecode.json-simple:json-simple:1.1.1" value="project"/>
+		<level name="Maven: junit:junit:4.10" value="project"/>
+		<level name="Maven: org.hamcrest:hamcrest-core:1.1" value="project"/>
+		<level name="Maven: com.google.guava:guava:29.0-jre" value="project"/>
+		<level name="Maven: com.google.guava:failureaccess:1.0.1" value="project"/>
+		<level name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" value="project"/>
+		<level name="Maven: org.checkerframework:checker-qual:2.11.1" value="project"/>
+		<level name="Maven: com.google.errorprone:error_prone_annotations:2.3.4" value="project"/>
+		<level name="Maven: com.google.j2objc:j2objc-annotations:1.3" value="project"/>
+		<level name="Maven: com.google.code.findbugs:jsr305:3.0.2" value="project"/>
+		<level name="Maven: org.apache.maven.plugins:maven-deploy-plugin:maven-plugin:3.0.0-M1" value="project"/>
+		<level name="Maven: org.apache.maven:maven-plugin-api:3.0" value="project"/>
+		<level name="Maven: org.sonatype.sisu:sisu-inject-plexus:1.4.2" value="project"/>
+		<level name="Maven: org.sonatype.sisu:sisu-inject-bean:1.4.2" value="project"/>
+		<level name="Maven: org.sonatype.sisu:sisu-guice:noaop:2.1.7" value="project"/>
+		<level name="Maven: org.apache.maven:maven-core:3.0" value="project"/>
+		<level name="Maven: org.apache.maven:maven-settings:3.0" value="project"/>
+		<level name="Maven: org.apache.maven:maven-settings-builder:3.0" value="project"/>
+		<level name="Maven: org.apache.maven:maven-repository-metadata:3.0" value="project"/>
+		<level name="Maven: org.apache.maven:maven-model-builder:3.0" value="project"/>
+		<level name="Maven: org.apache.maven:maven-aether-provider:3.0" value="project"/>
+		<level name="Maven: org.sonatype.aether:aether-impl:1.7" value="project"/>
+		<level name="Maven: org.sonatype.aether:aether-spi:1.7" value="project"/>
+		<level name="Maven: org.sonatype.aether:aether-api:1.7" value="project"/>
+		<level name="Maven: org.sonatype.aether:aether-util:1.7" value="project"/>
+		<level name="Maven: org.codehaus.plexus:plexus-interpolation:1.14" value="project"/>
+		<level name="Maven: org.codehaus.plexus:plexus-classworlds:2.2.3" value="project"/>
+		<level name="Maven: org.codehaus.plexus:plexus-component-annotations:1.5.5" value="project"/>
+		<level name="Maven: org.sonatype.plexus:plexus-sec-dispatcher:1.3" value="project"/>
+		<level name="Maven: org.sonatype.plexus:plexus-cipher:1.4" value="project"/>
+		<level name="Maven: org.apache.maven:maven-model:3.0" value="project"/>
+		<level name="Maven: org.apache.maven:maven-artifact:3.0" value="project"/>
+		<level name="Maven: org.apache.maven.shared:maven-artifact-transfer:0.10.0" value="project"/>
+		<level name="Maven: org.apache.maven.shared:maven-common-artifact-filters:3.0.1" value="project"/>
+		<level name="Maven: org.apache.maven.shared:maven-shared-utils:3.1.0" value="project"/>
+		<level name="Maven: commons-codec:commons-codec:1.11" value="project"/>
+		<level name="Maven: commons-io:commons-io:2.5" value="project"/>
+		<level name="Maven: org.codehaus.plexus:plexus-utils:3.1.0" value="project"/>
+		<level name="Maven: org.slf4j:slf4j-api:1.7.30" value="project"/>
+		<level name="Maven: net.sf.proguard:proguard-base:6.2.2" value="project"/>
+	</levels>
 </component>
