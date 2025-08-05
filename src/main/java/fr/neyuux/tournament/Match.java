@@ -1,28 +1,41 @@
 package fr.neyuux.tournament;
 
-import fr.neyuux.tournament.phases.Seed;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Match {
+    private String matchId;
+    private Participant player1;
+    private Participant player2;
+    private int rounds;
+    private int roundIndex;
+    private String winnerNextMatchId;
+    private String loserNextMatchId;
+    private Participant winner;
+    private Status status;
 
-    private final Seed seed1;
-    private final Seed seed2;
-    private final int bestof;
-
-    public Match (Seed seed1, Seed seed2, int bestof) {
-        this.seed1 = seed1;
-        this.seed2 = seed2;
-        this.bestof = bestof;
+    public Match(String matchId, Participant player1, Participant player2, int rounds, int roundIndex) {
+        this.matchId = matchId;
+        this.player1 = player1;
+        this.player2 = player2;
+        this.rounds = rounds;
+        this.roundIndex = roundIndex;
+        this.winnerNextMatchId = null;
+        this.loserNextMatchId = null;
+        this.winner = null;
+        this.status = Status.NOT_STARTED;
     }
 
-    public Seed getSeed1() {
-        return seed1;
-    }
-
-    public Seed getSeed2() {
-        return seed2;
-    }
-
-    public int getBO() {
-        return bestof;
+    public Participant determineWinner() {
+        // Placeholder : si player2 est null, player1 passe automatiquement
+        if (player2 == null) {
+            return player1;
+        }
+        // Exemple simpliste : choix aléatoire
+        return (Math.random() < 0.5) ? player1 : player2;
     }
 }
