@@ -1,7 +1,0 @@
-name: Tournoi
-version: alpha1.0.0
-author: Neyuux_
-main: fr.neyuux.tournament.TournamentPlugin
-commands:
-  tournoi:
-    description: Commande principale
